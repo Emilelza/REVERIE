@@ -1,0 +1,277 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── DARK MODE (default) ────────────────────────────────── */
+:root {
+  --bg: #0a0812;
+  --bg2: #120f1e;
+  --bg3: #1a1628;
+  --text: #f5ede8;
+  --text2: rgba(245, 237, 232, 0.7);
+  --text3: rgba(245, 237, 232, 0.4);
+  --text4: rgba(245, 237, 232, 0.2);
+  --border: rgba(196, 184, 216, 0.1);
+  --border2: rgba(255, 255, 255, 0.08);
+  --card: rgba(255, 255, 255, 0.03);
+  --card2: rgba(255, 255, 255, 0.05);
+  --input-bg: rgba(255, 255, 255, 0.04);
+  --input-bg2: rgba(255, 255, 255, 0.06);
+  --rose: #e8637a;
+  --blush: #f0a0b0;
+  --gold: #e8b86d;
+  --sage: #7db8a4;
+  --mist: #c4b8d8;
+  --shadow: rgba(0, 0, 0, 0.5);
+}
+
+/* ── LIGHT MODE ──────────────────────────────────────────── */
+html.light {
+  --bg: #fdf8f5;
+  --bg2: #fff5f0;
+  --bg3: #ffeee8;
+  --text: #2a1a1f;
+  --text2: rgba(42, 26, 31, 0.75);
+  --text3: rgba(42, 26, 31, 0.5);
+  --text4: rgba(42, 26, 31, 0.3);
+  --border: rgba(232, 99, 122, 0.15);
+  --border2: rgba(232, 99, 122, 0.12);
+  --card: rgba(255, 255, 255, 0.8);
+  --card2: rgba(255, 255, 255, 0.95);
+  --input-bg: rgba(255, 255, 255, 0.9);
+  --input-bg2: rgba(255, 255, 255, 1);
+  --rose: #d4506a;
+  --blush: #e8637a;
+  --gold: #c8922a;
+  --sage: #4a9080;
+  --mist: #8070a8;
+  --shadow: rgba(180, 100, 120, 0.15);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(232, 99, 122, 0.3);
+    border-radius: 10px;
+  }
+}
+
+@layer components {
+
+  /* ── GLASS ───────────────────────────────────────── */
+  .glass {
+    background: var(--card);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+  }
+
+  .glass-rose {
+    background: var(--card2);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+  }
+
+  /* ── GRADIENT TEXT ───────────────────────────────── */
+  .grad-warm {
+    background: linear-gradient(135deg, var(--rose) 0%, var(--gold) 60%, var(--blush) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── INPUT FIELD ─────────────────────────────────── */
+  .input-field {
+    width: 100%;
+    background: var(--input-bg);
+    border: 1px solid var(--border2);
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    color: var(--text);
+    font-size: 0.875rem;
+    font-family: 'Outfit', sans-serif;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .input-field::placeholder {
+    color: var(--text4);
+  }
+
+  .input-field:focus {
+    border-color: rgba(232, 99, 122, 0.45);
+    box-shadow: 0 0 0 3px rgba(232, 99, 122, 0.1);
+    background: var(--input-bg2);
+  }
+
+  .input-field.err {
+    border-color: rgba(232, 99, 122, 0.6);
+    box-shadow: 0 0 0 3px rgba(232, 99, 122, 0.12);
+  }
+
+  /* ── BUTTON PRIMARY ──────────────────────────────── */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, var(--rose), #c8405a);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.875rem;
+    font-family: 'Outfit', sans-serif;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 32px rgba(232, 99, 122, 0.4);
+  }
+
+  .btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* ── ENTRY CARD ──────────────────────────────────── */
+  .entry-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    animation: cardIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .entry-card:hover {
+    border-color: rgba(232, 99, 122, 0.25);
+  }
+
+  .entry-card.mine {
+    background: rgba(232, 99, 122, 0.05);
+    border-color: rgba(232, 99, 122, 0.15);
+  }
+
+  /* ── LIGHT MODE CARD OVERRIDES ───────────────────── */
+  html.light .entry-card {
+    background: #fff;
+    border-color: rgba(232, 99, 122, 0.12);
+    box-shadow: 0 2px 12px rgba(180, 100, 120, 0.08);
+  }
+
+  html.light .entry-card.mine {
+    background: rgba(232, 99, 122, 0.04);
+    border-color: rgba(232, 99, 122, 0.2);
+  }
+
+  html.light .glass {
+    box-shadow: 0 2px 16px rgba(180, 100, 120, 0.1);
+  }
+}
+
+/* ── KEYFRAMES ───────────────────────────────────────── */
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pulseDot {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.animate-card-in {
+  animation: cardIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.4s ease both;
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-pulse-dot {
+  animation: pulseDot 2s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin 1.2s linear infinite;
+}
